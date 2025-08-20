@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { prisma } from "@/prisma";
 class QuestionsController {
   async index(request: Request, response: Response) {
@@ -8,8 +8,8 @@ class QuestionsController {
   async create(request: Request, response: Response) {
     const { title, content, user_id } = request.body;
 
-    await prisma.questions.create({
-      data: { title, content, user: user_id },
+    await prisma.question.create({
+      data: { title, content, userId: user_id },
     });
 
     return response.status(201).json();
